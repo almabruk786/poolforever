@@ -112,7 +112,7 @@ export async function getSiteContent() {
   const collection = await getCollection<Document>("content");
   if (collection) {
     const stored = await collection.findOne({ key: "site" });
-    return cleanContent(stored || {});
+    return cleanContent((stored || {}) as Partial<SiteContent>);
   }
 
   const store = await readStore();
