@@ -1,0 +1,8 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#03080F"/>
+  <circle cx="600" cy="280" r="170" stroke="#13C8F2" stroke-opacity=".45" stroke-width="4"/>
+  <circle cx="600" cy="280" r="230" stroke="#13C8F2" stroke-opacity=".12" stroke-width="10"/>
+  <rect x="542" y="222" width="116" height="116" rx="28" fill="#13C8F2"/>
+  <text x="600" y="300" text-anchor="middle" font-family="Arial" font-size="58" font-weight="700" fill="white">P</text>
+  <text x="600" y="455" text-anchor="middle" font-family="Georgia" font-size="76" font-weight="700" fill="white">POOL <tspan fill="#13C8F2">FOREVER</tspan></text>
+</svg>
