@@ -61,9 +61,8 @@ async function readStore(): Promise<CmsStore> {
   try {
     const raw = await fs.readFile(storePath, "utf8");
     return JSON.parse(raw) as CmsStore;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") return {};
-    throw error;
+  } catch {
+    return {};
   }
 }
 
@@ -109,14 +108,18 @@ function cleanContent(input: Partial<SiteContent>) {
 }
 
 export async function getSiteContent() {
-  const collection = await getCollection<Document>("content");
-  if (collection) {
-    const stored = await collection.findOne({ key: "site" });
-    return cleanContent((stored || {}) as Partial<SiteContent>);
-  }
+  try {
+    const collection = await getCollection<Document>("content");
+    if (collection) {
+      const stored = await collection.findOne({ key: "site" });
+      return cleanContent((stored || {}) as Partial<SiteContent>);
+    }
 
-  const store = await readStore();
-  return cleanContent(store.content || {});
+    const store = await readStore();
+    return cleanContent(store.content || {});
+  } catch {
+    return cleanContent({});
+  }
 }
 
 export async function saveSiteContent(input: Partial<SiteContent>) {
@@ -139,15 +142,19 @@ export async function saveSiteContent(input: Partial<SiteContent>) {
 }
 
 export async function getProjects() {
-  const collection = await getCollection<Document>("projects");
-  if (collection) {
-    const stored = await collection.find({}).sort({ createdAt: -1 }).toArray();
-    return (stored.length ? stored : defaultProjects).map(normalizeProject);
-  }
+  try {
+    const collection = await getCollection<Document>("projects");
+    if (collection) {
+      const stored = await collection.find({}).sort({ createdAt: -1 }).toArray();
+      return (stored.length ? stored : defaultProjects).map(normalizeProject);
+    }
 
-  const store = await readStore();
-  if (store.projects) return store.projects.map(normalizeProject);
-  return defaultProjects.map(normalizeProject);
+    const store = await readStore();
+    if (store.projects) return store.projects.map(normalizeProject);
+    return defaultProjects.map(normalizeProject);
+  } catch {
+    return defaultProjects.map(normalizeProject);
+  }
 }
 
 export async function saveProject(input: ProjectInput) {
