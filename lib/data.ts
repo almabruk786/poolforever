@@ -12,17 +12,17 @@ export const contact = {
 export const heroSlides = [
   {
     title: "Build Your Dream Pool With Pool Forever",
-    image: "/gallery/hero-pool.svg",
+    image: "/gallery/hero-pool.jpg",
     eyebrow: "Luxury Pool Design and Construction"
   },
   {
     title: "Resort Grade Water Experiences For Private Homes",
-    image: "/gallery/resort.svg",
+    image: "/gallery/resort.jpg",
     eyebrow: "Concept, Build, Automation, Care"
   },
   {
     title: "Cinematic Pools Engineered To Last",
-    image: "/gallery/indoor.svg",
+    image: "/gallery/indoor.jpg",
     eyebrow: "International Finish, Local Expertise"
   }
 ];
