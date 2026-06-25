@@ -13,12 +13,14 @@ export type ProjectInput = {
   category: ProjectCategory | string;
   location: string;
   image: string;
+  images?: string[];
   video?: string;
   description: string;
 };
 
 export type CmsProject = Required<Pick<ProjectInput, "title" | "category" | "location" | "image" | "description">> & {
   id: string;
+  images?: string[];
   video?: string;
   createdAt?: string;
   updatedAt?: string;

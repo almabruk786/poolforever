@@ -10,13 +10,22 @@ export async function getDb() {
   if (!uri) return null;
   if (cachedDb) return cachedDb;
 
-  cachedClient = cachedClient || new MongoClient(uri);
-  await cachedClient.connect();
-  cachedDb = cachedClient.db(dbName);
-  return cachedDb;
+  try {
+    cachedClient = cachedClient || new MongoClient(uri, {
+      connectTimeoutMS: 2000,
+      serverSelectionTimeoutMS: 2000
+    });
+    await cachedClient.connect();
+    cachedDb = cachedClient.db(dbName);
+    return cachedDb;
+  } catch (error) {
+    console.error("Failed to connect to MongoDB, falling back to local file storage:", error);
+    return null;
+  }
 }
 
 export async function getCollection<T extends Document = Document>(name: string) {
   const db = await getDb();
   return db?.collection<T>(name) || null;
 }
+

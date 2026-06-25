@@ -76,12 +76,19 @@ function documentId(document: { id?: unknown; _id?: unknown }, fallback: string)
 }
 
 function normalizeProject(project: Partial<CmsProject> & Partial<ProjectInput> & { _id?: unknown }): CmsProject {
+  const images = Array.isArray(project.images)
+    ? project.images.map(String)
+    : project.image
+    ? [stringValue(project.image)]
+    : [];
+
   return {
     id: documentId(project, makeId(stringValue(project.title, "project"))),
     title: stringValue(project.title, "Untitled Project"),
     category: stringValue(project.category, "Luxury Pools"),
     location: stringValue(project.location),
     image: stringValue(project.image, "/gallery/hero-pool.svg"),
+    images: images.length ? images : ["/gallery/hero-pool.svg"],
     video: stringValue(project.video) || undefined,
     description: stringValue(project.description),
     createdAt: stringValue(project.createdAt) || undefined,

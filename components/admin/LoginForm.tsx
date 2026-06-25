@@ -11,18 +11,28 @@ export function LoginForm() {
 
   async function login(formData: FormData) {
     setMessage("Checking credentials...");
-    const response = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(Object.fromEntries(formData.entries()))
-    });
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(formData.entries()))
+      });
 
-    if (response.ok) {
-      router.push("/admin");
-      router.refresh();
-    } else {
-      const data = await response.json();
-      setMessage(data.message || "Login failed.");
+      if (response.ok) {
+        router.push("/admin");
+        router.refresh();
+      } else {
+        let errorMessage = "Login failed.";
+        try {
+          const data = await response.json();
+          errorMessage = data.message || errorMessage;
+        } catch {
+          errorMessage = `Login failed (Status: ${response.status})`;
+        }
+        setMessage(errorMessage);
+      }
+    } catch (err) {
+      setMessage("Network error occurred. Please try again.");
     }
   }
 

@@ -39,53 +39,96 @@ export const categories = [
 
 export const projects = [
   {
-    id: "skyline-rooftop",
-    title: "Skyline Rooftop Pool",
-    category: "Rooftop Pools",
-    location: "Urban Residence",
-    image: "/gallery/rooftop.svg",
-    video: "https://player.vimeo.com/video/76979871",
-    description: "A compact rooftop pool with infinity-edge detailing, evening lighting, and discreet filtration."
-  },
-  {
-    id: "resort-lagoon",
-    title: "Resort Lagoon Pool",
-    category: "Resort Pools",
-    location: "Boutique Resort",
-    image: "/gallery/resort.svg",
-    description: "A destination-style pool planned around guest flow, shade, landscaping, and sunset atmosphere."
-  },
-  {
-    id: "private-spa",
-    title: "Private Spa Jacuzzi",
-    category: "Jacuzzi",
-    location: "Luxury Villa",
-    image: "/gallery/jacuzzi.svg",
-    description: "A hydrotherapy zone with heated jets, stone finishes, and a quiet glass-edge mood."
-  },
-  {
-    id: "indoor-azure",
-    title: "Indoor Azure Pool",
+    id: "ali-swimming",
+    title: "Ali Swimming Training Centre",
     category: "Indoor Pools",
-    location: "Wellness House",
-    image: "/gallery/indoor.svg",
-    description: "An indoor pool with humidity planning, reflective lighting, and day-to-night comfort."
+    location: "Barishal Sadar, Barishal",
+    image: "/projects/ali-swimming/image-1.jpg",
+    images: [
+      "/projects/ali-swimming/image-1.jpg",
+      "/projects/ali-swimming/image-2.jpg",
+      "/projects/ali-swimming/image-3.jpg",
+      "/projects/ali-swimming/image-4.jpg",
+      "/projects/ali-swimming/image-5.jpg",
+      "/projects/ali-swimming/image-6.jpg",
+      "/projects/ali-swimming/image-7.jpg",
+      "/projects/ali-swimming/image-8.jpg",
+      "/projects/ali-swimming/image-9.jpg",
+      "/projects/ali-swimming/image-10.jpg",
+      "/projects/ali-swimming/image-11.jpg",
+      "/projects/ali-swimming/image-12.jpg",
+      "/projects/ali-swimming/image-13.jpg"
+    ],
+    description: "A professional-grade swimming training centre built with advanced water filtration and safety standards for coaching and community swimming."
   },
   {
-    id: "family-splash",
-    title: "Family Splash Zone",
+    id: "astro-harbour",
+    title: "Astro Harbour Resort Pool",
+    category: "Resort Pools",
+    location: "Savar, Dhaka",
+    image: "/projects/astro-harbour/image-1.jpg",
+    images: [
+      "/projects/astro-harbour/image-1.jpg",
+      "/projects/astro-harbour/image-2.jpg",
+      "/projects/astro-harbour/image-3.jpg",
+      "/projects/astro-harbour/image-4.jpg",
+      "/projects/astro-harbour/image-5.png"
+    ],
+    description: "A luxurious resort-grade swimming pool designed with modern overflow channels, lounge areas, and integrated lighting for premium guest experiences."
+  },
+  {
+    id: "kb-marina",
+    title: "KB Marina Pool",
+    category: "Luxury Pools",
+    location: "Chittagong",
+    image: "/projects/kb-marina/image-1.jpg",
+    images: [
+      "/projects/kb-marina/image-1.jpg",
+      "/projects/kb-marina/image-2.jpg",
+      "/projects/kb-marina/image-3.jpg",
+      "/projects/kb-marina/image-4.jpg",
+      "/projects/kb-marina/image-5.jpg",
+      "/projects/kb-marina/image-6.jpg",
+      "/projects/kb-marina/image-7.jpg"
+    ],
+    description: "A magnificent waterfront pool experience combining architectural elegance, premium glass tiling, and high-performance water treatment."
+  },
+  {
+    id: "layla-playground",
+    title: "Layla Group Playground Pool",
     category: "Kids Pools",
-    location: "Family Residence",
-    image: "/gallery/kids.svg",
-    description: "A safe shallow-water experience designed for play, supervision, and long weekend use."
+    location: "Jolshiri, Dhaka",
+    image: "/projects/layla-playground/image-1.jpg",
+    images: [
+      "/projects/layla-playground/image-1.jpg",
+      "/projects/layla-playground/image-2.jpg",
+      "/projects/layla-playground/image-3.jpg",
+      "/projects/layla-playground/image-4.jpg",
+      "/projects/layla-playground/image-5.jpg",
+      "/projects/layla-playground/image-6.jpg",
+      "/projects/layla-playground/image-7.jpg"
+    ],
+    description: "A vibrant playground pool designed with family safety, children-friendly depths, and interactive water play systems."
   },
   {
-    id: "courtyard-fountain",
-    title: "Courtyard Fountain",
-    category: "Fountain Design",
-    location: "Signature Entrance",
-    image: "/gallery/fountain.svg",
-    description: "A sculptural water feature with soft movement, architectural balance, and evening glow."
+    id: "momota-resort",
+    title: "Momota Polli Resort Pool",
+    category: "Resort Pools",
+    location: "Zirabo, Ashulia, Dhaka",
+    image: "/projects/momota-resort/image-1.jpg",
+    images: [
+      "/projects/momota-resort/image-1.jpg",
+      "/projects/momota-resort/image-2.jpg",
+      "/projects/momota-resort/image-3.jpg",
+      "/projects/momota-resort/image-4.jpg",
+      "/projects/momota-resort/image-5.jpg",
+      "/projects/momota-resort/image-6.jpg",
+      "/projects/momota-resort/image-7.jpg",
+      "/projects/momota-resort/image-8.jpg",
+      "/projects/momota-resort/image-9.jpg",
+      "/projects/momota-resort/image-10.jpg"
+    ],
+    description: "A massive lagoon-style resort pool built with organic curves, natural landscaping, and high-volume commercial filtration."
   }
 ];
 

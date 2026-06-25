@@ -3,6 +3,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Maximize2, Play, X } from "lucide-react";
 import { useMemo, useState } from "react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { categories } from "@/lib/data";
 import type { CmsProject } from "@/types/cms";
 import { SectionHeading } from "./SectionHeading";
@@ -64,6 +69,27 @@ export function GalleryExperience({ projects }: { projects: CmsProject[] }) {
                 ) : (
                   <video src={active.video} poster={active.image} className="max-h-[68vh] w-full bg-black object-contain" controls />
                 )
+              ) : active.images && active.images.length > 1 ? (
+                <div className="relative h-[48vh] sm:h-[58vh] md:h-[65vh] w-full bg-black/40">
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    navigation
+                    pagination={{ clickable: true }}
+                    autoplay={{ delay: 3500, disableOnInteraction: true }}
+                    loop
+                    className="h-full w-full [--swiper-navigation-color:#13c8f2] [--swiper-pagination-color:#13c8f2]"
+                  >
+                    {active.images.map((imgSrc, imgIndex) => (
+                      <SwiperSlide key={imgSrc}>
+                        <img
+                          src={imgSrc}
+                          alt={`${active.title} - view ${imgIndex + 1}`}
+                          className="h-full w-full object-cover"
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
               ) : (
                 <img src={active.image} alt={active.title} className="max-h-[68vh] w-full object-cover" />
               )}

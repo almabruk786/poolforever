@@ -9,18 +9,35 @@ export function BookingForm() {
 
   async function submit(formData: FormData) {
     setStatus("Sending...");
-    const payload = Object.fromEntries(formData.entries());
-    const response = await fetch("/api/booking", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    const data = await response.json();
-    if (response.ok) {
-      setStatus("Booking received. Opening WhatsApp notification...");
-      window.open(data.whatsapp, "_blank");
-    } else {
-      setStatus(data.message || "Something went wrong.");
+    try {
+      const payload = Object.fromEntries(formData.entries());
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        let data = null;
+        try {
+          data = await response.json();
+        } catch {}
+        setStatus("Booking received. Opening WhatsApp notification...");
+        if (data?.whatsapp) {
+          window.open(data.whatsapp, "_blank");
+        }
+      } else {
+        let errorMessage = "Something went wrong.";
+        try {
+          const data = await response.json();
+          errorMessage = data.message || errorMessage;
+        } catch {
+          errorMessage = `Something went wrong (Status: ${response.status}).`;
+        }
+        setStatus(errorMessage);
+      }
+    } catch (err) {
+      setStatus("Network error occurred. Please try again.");
     }
   }
 

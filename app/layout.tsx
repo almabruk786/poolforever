@@ -41,8 +41,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   };
 
   return (
-    <html lang="en">
-      <body className="noise font-sans">
+    <html lang="en" suppressHydrationWarning>
+      <body className="noise font-sans" suppressHydrationWarning>
         {children}
         <Script id="schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </body>
