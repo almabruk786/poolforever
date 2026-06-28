@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSiteContent } from "@/lib/cms";
-import { getCollection } from "@/lib/db";
+import { getSiteContent, saveBooking } from "@/lib/cms";
 import type { BookingInput } from "@/types/cms";
 
 export async function POST(request: Request) {
@@ -10,8 +9,7 @@ export async function POST(request: Request) {
   }
 
   const booking = { ...body, status: "new", createdAt: new Date().toISOString() };
-  const collection = await getCollection("bookings");
-  await collection?.insertOne(booking);
+  await saveBooking(booking);
 
   const content = await getSiteContent();
   const whatsapp = `https://wa.me/${content.whatsapp}?text=${encodeURIComponent(

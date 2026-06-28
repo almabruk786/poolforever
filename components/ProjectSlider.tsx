@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import type { CmsProject } from "@/types/cms";
 import { SectionHeading } from "./SectionHeading";
+import { getOptimizedUrl } from "@/lib/cloudinary-loader";
 
 export function ProjectSlider({ projects }: { projects: CmsProject[] }) {
   return (
@@ -20,7 +21,7 @@ export function ProjectSlider({ projects }: { projects: CmsProject[] }) {
             <SwiperSlide key={project.id}>
               <Link href="/projects" className="group block overflow-hidden rounded-[2rem] border border-white/10 bg-white/[.06]">
                 <div className="relative h-[28rem] overflow-hidden">
-                  <div className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110" style={{ backgroundImage: `url(${project.image})` }} />
+                  <div className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110" style={{ backgroundImage: `url(${getOptimizedUrl(project.image, 600)})` }} />
                   <div className="absolute inset-0 bg-gradient-to-t from-abyss via-transparent to-transparent" />
                   <div className="absolute bottom-0 p-6">
                     <p className="text-sm uppercase tracking-[.22em] text-aqua">{project.category}</p>

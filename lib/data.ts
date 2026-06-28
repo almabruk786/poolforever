@@ -12,17 +12,17 @@ export const contact = {
 export const heroSlides = [
   {
     title: "Build Your Dream Pool With Pool Forever",
-    image: "/gallery/hero-pool.jpg",
+    image: "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641824/pool-forever/gallery/hero-pool.jpg",
     eyebrow: "Luxury Pool Design and Construction"
   },
   {
     title: "Resort Grade Water Experiences For Private Homes",
-    image: "/gallery/resort.jpg",
+    image: "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641852/pool-forever/gallery/resort.jpg",
     eyebrow: "Concept, Build, Automation, Care"
   },
   {
     title: "Cinematic Pools Engineered To Last",
-    image: "/gallery/indoor.jpg",
+    image: "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641832/pool-forever/gallery/indoor.jpg",
     eyebrow: "International Finish, Local Expertise"
   }
 ];
@@ -43,21 +43,21 @@ export const projects = [
     title: "Ali Swimming Training Centre",
     category: "Indoor Pools",
     location: "Barishal Sadar, Barishal",
-    image: "/projects/ali-swimming/image-1.jpg",
+    image: "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641867/pool-forever/projects/ali-swimming/image-1.jpg",
     images: [
-      "/projects/ali-swimming/image-1.jpg",
-      "/projects/ali-swimming/image-2.jpg",
-      "/projects/ali-swimming/image-3.jpg",
-      "/projects/ali-swimming/image-4.jpg",
-      "/projects/ali-swimming/image-5.jpg",
-      "/projects/ali-swimming/image-6.jpg",
-      "/projects/ali-swimming/image-7.jpg",
-      "/projects/ali-swimming/image-8.jpg",
-      "/projects/ali-swimming/image-9.jpg",
-      "/projects/ali-swimming/image-10.jpg",
-      "/projects/ali-swimming/image-11.jpg",
-      "/projects/ali-swimming/image-12.jpg",
-      "/projects/ali-swimming/image-13.jpg"
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641867/pool-forever/projects/ali-swimming/image-1.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641873/pool-forever/projects/ali-swimming/image-2.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641873/pool-forever/projects/ali-swimming/image-3.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641874/pool-forever/projects/ali-swimming/image-4.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641875/pool-forever/projects/ali-swimming/image-5.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641876/pool-forever/projects/ali-swimming/image-6.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641878/pool-forever/projects/ali-swimming/image-7.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641879/pool-forever/projects/ali-swimming/image-8.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641880/pool-forever/projects/ali-swimming/image-9.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641868/pool-forever/projects/ali-swimming/image-10.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641869/pool-forever/projects/ali-swimming/image-11.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641870/pool-forever/projects/ali-swimming/image-12.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641872/pool-forever/projects/ali-swimming/image-13.jpg"
     ],
     description: "A professional-grade swimming training centre built with advanced water filtration and safety standards for coaching and community swimming."
   },
@@ -66,13 +66,13 @@ export const projects = [
     title: "Astro Harbour Resort Pool",
     category: "Resort Pools",
     location: "Savar, Dhaka",
-    image: "/projects/astro-harbour/image-1.jpg",
+    image: "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641882/pool-forever/projects/astro-harbour/image-1.jpg",
     images: [
-      "/projects/astro-harbour/image-1.jpg",
-      "/projects/astro-harbour/image-2.jpg",
-      "/projects/astro-harbour/image-3.jpg",
-      "/projects/astro-harbour/image-4.jpg",
-      "/projects/astro-harbour/image-5.png"
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641882/pool-forever/projects/astro-harbour/image-1.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641883/pool-forever/projects/astro-harbour/image-2.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641884/pool-forever/projects/astro-harbour/image-3.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641887/pool-forever/projects/astro-harbour/image-4.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641890/pool-forever/projects/astro-harbour/image-5.png"
     ],
     description: "A luxurious resort-grade swimming pool designed with modern overflow channels, lounge areas, and integrated lighting for premium guest experiences."
   },
@@ -81,15 +81,15 @@ export const projects = [
     title: "KB Marina Pool",
     category: "Luxury Pools",
     location: "Chittagong",
-    image: "/projects/kb-marina/image-1.jpg",
+    image: "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641891/pool-forever/projects/kb-marina/image-1.jpg",
     images: [
-      "/projects/kb-marina/image-1.jpg",
-      "/projects/kb-marina/image-2.jpg",
-      "/projects/kb-marina/image-3.jpg",
-      "/projects/kb-marina/image-4.jpg",
-      "/projects/kb-marina/image-5.jpg",
-      "/projects/kb-marina/image-6.jpg",
-      "/projects/kb-marina/image-7.jpg"
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641891/pool-forever/projects/kb-marina/image-1.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641892/pool-forever/projects/kb-marina/image-2.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641900/pool-forever/projects/kb-marina/image-3.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641906/pool-forever/projects/kb-marina/image-4.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641921/pool-forever/projects/kb-marina/image-5.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641926/pool-forever/projects/kb-marina/image-6.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641933/pool-forever/projects/kb-marina/image-7.jpg"
     ],
     description: "A magnificent waterfront pool experience combining architectural elegance, premium glass tiling, and high-performance water treatment."
   },
@@ -98,15 +98,15 @@ export const projects = [
     title: "Layla Group Playground Pool",
     category: "Kids Pools",
     location: "Jolshiri, Dhaka",
-    image: "/projects/layla-playground/image-1.jpg",
+    image: "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641934/pool-forever/projects/layla-playground/image-1.jpg",
     images: [
-      "/projects/layla-playground/image-1.jpg",
-      "/projects/layla-playground/image-2.jpg",
-      "/projects/layla-playground/image-3.jpg",
-      "/projects/layla-playground/image-4.jpg",
-      "/projects/layla-playground/image-5.jpg",
-      "/projects/layla-playground/image-6.jpg",
-      "/projects/layla-playground/image-7.jpg"
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641934/pool-forever/projects/layla-playground/image-1.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641935/pool-forever/projects/layla-playground/image-2.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641937/pool-forever/projects/layla-playground/image-3.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641938/pool-forever/projects/layla-playground/image-4.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641939/pool-forever/projects/layla-playground/image-5.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641941/pool-forever/projects/layla-playground/image-6.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641942/pool-forever/projects/layla-playground/image-7.jpg"
     ],
     description: "A vibrant playground pool designed with family safety, children-friendly depths, and interactive water play systems."
   },
@@ -115,18 +115,18 @@ export const projects = [
     title: "Momota Polli Resort Pool",
     category: "Resort Pools",
     location: "Zirabo, Ashulia, Dhaka",
-    image: "/projects/momota-resort/image-1.jpg",
+    image: "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641944/pool-forever/projects/momota-resort/image-1.jpg",
     images: [
-      "/projects/momota-resort/image-1.jpg",
-      "/projects/momota-resort/image-2.jpg",
-      "/projects/momota-resort/image-3.jpg",
-      "/projects/momota-resort/image-4.jpg",
-      "/projects/momota-resort/image-5.jpg",
-      "/projects/momota-resort/image-6.jpg",
-      "/projects/momota-resort/image-7.jpg",
-      "/projects/momota-resort/image-8.jpg",
-      "/projects/momota-resort/image-9.jpg",
-      "/projects/momota-resort/image-10.jpg"
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641944/pool-forever/projects/momota-resort/image-1.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641951/pool-forever/projects/momota-resort/image-2.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641953/pool-forever/projects/momota-resort/image-3.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641955/pool-forever/projects/momota-resort/image-4.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641962/pool-forever/projects/momota-resort/image-5.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641969/pool-forever/projects/momota-resort/image-6.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641975/pool-forever/projects/momota-resort/image-7.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641980/pool-forever/projects/momota-resort/image-8.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641986/pool-forever/projects/momota-resort/image-9.jpg",
+      "https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641949/pool-forever/projects/momota-resort/image-10.jpg"
     ],
     description: "A massive lagoon-style resort pool built with organic curves, natural landscaping, and high-volume commercial filtration."
   }

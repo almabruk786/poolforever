@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SectionHeading } from "./SectionHeading";
+import { getOptimizedUrl } from "@/lib/cloudinary-loader";
 
 export function BeforeAfter() {
   const [value, setValue] = useState(55);
@@ -14,9 +15,9 @@ export function BeforeAfter() {
           className="glass relative mx-auto aspect-[16/9] max-w-5xl overflow-hidden rounded-[2rem]"
           style={{ containerType: "inline-size" }}
         >
-          <img className="absolute inset-0 h-full w-full object-cover grayscale" src="/gallery/indoor.jpg" alt="Before renovation" />
+          <img className="absolute inset-0 h-full w-full object-cover grayscale" src={getOptimizedUrl("https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641832/pool-forever/gallery/indoor.jpg", 1000)} alt="Before renovation" />
           <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${value}%` }}>
-            <img className="h-full max-w-none object-cover" style={{ width: "100cqw" }} src="/gallery/hero-pool.jpg" alt="After pool renovation" />
+            <img className="h-full max-w-none object-cover" style={{ width: "100cqw" }} src={getOptimizedUrl("https://res.cloudinary.com/dttj4hfgx/image/upload/v1782641824/pool-forever/gallery/hero-pool.jpg", 1000)} alt="After pool renovation" />
           </div>
           <div className="absolute inset-y-0 w-1 bg-aqua shadow-glow" style={{ left: `${value}%` }} />
           <input aria-label="Before after comparison" className="absolute inset-x-8 bottom-8 accent-aqua" type="range" min="8" max="92" value={value} onChange={(event) => setValue(Number(event.target.value))} />

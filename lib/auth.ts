@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-import { getCollection } from "./db";
+import { getAdminUser, saveAdminUser } from "./cms";
 
 const DEFAULT_USERNAME = "admin";
 const DEFAULT_PASSWORD = "Miraj@2026";
@@ -18,18 +18,12 @@ export function jwtSecret() {
 }
 
 export async function ensureAdminUser() {
-  const users = await getCollection<AdminUser>("adminUsers");
   const defaultHash = await bcrypt.hash(DEFAULT_PASSWORD, 12);
-
-  if (!users) {
-    return { username: DEFAULT_USERNAME, passwordHash: defaultHash, updatedAt: new Date().toISOString() };
-  }
-
-  const existing = await users.findOne({ username: DEFAULT_USERNAME });
+  const existing = await getAdminUser();
   if (existing) return existing;
 
   const user = { username: DEFAULT_USERNAME, passwordHash: defaultHash, updatedAt: new Date().toISOString() };
-  await users.insertOne(user);
+  await saveAdminUser(user);
   return user;
 }
 
@@ -77,14 +71,8 @@ export async function changeAdminPassword(currentPassword: string, newPassword: 
   if (!valid) return { ok: false, message: "Current password is incorrect." };
   if (newPassword.length < 8) return { ok: false, message: "New password must be at least 8 characters." };
 
-  const users = await getCollection<AdminUser>("adminUsers");
-  if (!users) return { ok: false, message: "Set MONGODB_URI to persist password changes." };
-
   const passwordHash = await bcrypt.hash(newPassword, 12);
-  await users.updateOne(
-    { username: DEFAULT_USERNAME },
-    { $set: { passwordHash, updatedAt: new Date().toISOString() } },
-    { upsert: true }
-  );
-  return { ok: true, message: "Password updated." };
+  const user = { username: DEFAULT_USERNAME, passwordHash, updatedAt: new Date().toISOString() };
+  await saveAdminUser(user);
+  return { ok: true, message: "Password updated successfully in local storage." };
 }

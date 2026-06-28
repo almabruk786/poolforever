@@ -10,6 +10,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 import { heroSlides } from "@/lib/data";
 import type { SiteContent } from "@/types/cms";
+import { getOptimizedUrl } from "@/lib/cloudinary-loader";
 
 export function Hero({ content }: { content: SiteContent }) {
   const slides = [{ ...heroSlides[0], image: content.heroImage }, ...heroSlides.slice(1)];
@@ -19,7 +20,7 @@ export function Hero({ content }: { content: SiteContent }) {
       <Swiper modules={[Autoplay, EffectFade, Pagination]} effect="fade" loop autoplay={{ delay: 4200, disableOnInteraction: false }} pagination={{ clickable: true }} className="absolute inset-0">
         {slides.map((slide) => (
           <SwiperSlide key={slide.image}>
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${slide.image})` }} />
+            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${getOptimizedUrl(slide.image, 1600)})` }} />
             <div className="absolute inset-0 bg-gradient-to-r from-abyss via-abyss/70 to-abyss/20" />
           </SwiperSlide>
         ))}

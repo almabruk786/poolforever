@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import { categories } from "@/lib/data";
 import type { CmsProject } from "@/types/cms";
 import { SectionHeading } from "./SectionHeading";
+import { getOptimizedUrl } from "@/lib/cloudinary-loader";
 
 export function GalleryExperience({ projects }: { projects: CmsProject[] }) {
   const [category, setCategory] = useState("All");
@@ -41,8 +42,12 @@ export function GalleryExperience({ projects }: { projects: CmsProject[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="relative" style={{ height: index % 2 ? 420 : 320 }}>
-                <div className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-110" style={{ backgroundImage: `url(${project.image})` }} />
+              <div className="relative w-full overflow-hidden">
+                <img
+                  src={getOptimizedUrl(project.image, 600)}
+                  alt={project.title}
+                  className="w-full h-auto transition duration-700 group-hover:scale-110 object-contain block"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-abyss/90 via-transparent to-transparent" />
                 {project.video && <Play className="absolute left-5 top-5 text-aqua" />}
                 <Maximize2 className="absolute right-5 top-5 opacity-0 transition group-hover:opacity-100" />
@@ -62,15 +67,15 @@ export function GalleryExperience({ projects }: { projects: CmsProject[] }) {
             <button aria-label="Close preview" onClick={() => setActive(null)} className="absolute right-5 top-5 grid h-12 w-12 place-items-center rounded-full bg-white text-abyss">
               <X />
             </button>
-            <motion.div layoutId={active.id} className="max-h-[88vh] w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/10 bg-abyss">
+            <motion.div layoutId={active.id} className="max-h-[95vh] w-full max-w-[95vw] sm:max-w-6xl overflow-hidden rounded-[2rem] border border-white/10 bg-abyss flex flex-col justify-between">
               {active.video ? (
                 isEmbedVideo ? (
-                  <iframe title={active.title} src={active.video} className="h-[68vh] w-full border-0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+                  <iframe title={active.title} src={active.video} className="h-[75vh] w-full border-0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
                 ) : (
-                  <video src={active.video} poster={active.image} className="max-h-[68vh] w-full bg-black object-contain" controls />
+                  <video src={active.video} poster={getOptimizedUrl(active.image, 1200)} className="max-h-[75vh] w-full bg-black object-contain" controls />
                 )
               ) : active.images && active.images.length > 1 ? (
-                <div className="relative h-[48vh] sm:h-[58vh] md:h-[65vh] w-full bg-black/40">
+                <div className="relative h-[55vh] sm:h-[65vh] md:h-[72vh] w-full bg-black/40">
                   <Swiper
                     modules={[Navigation, Pagination, Autoplay]}
                     navigation
@@ -80,18 +85,24 @@ export function GalleryExperience({ projects }: { projects: CmsProject[] }) {
                     className="h-full w-full [--swiper-navigation-color:#13c8f2] [--swiper-pagination-color:#13c8f2]"
                   >
                     {active.images.map((imgSrc, imgIndex) => (
-                      <SwiperSlide key={imgSrc}>
+                      <SwiperSlide key={imgSrc} className="flex items-center justify-center w-full h-full">
                         <img
-                          src={imgSrc}
+                          src={getOptimizedUrl(imgSrc, 1200)}
                           alt={`${active.title} - view ${imgIndex + 1}`}
-                          className="h-full w-full object-cover"
+                          className="max-h-[72vh] max-w-full w-auto h-auto object-contain mx-auto block"
                         />
                       </SwiperSlide>
                     ))}
                   </Swiper>
                 </div>
               ) : (
-                <img src={active.image} alt={active.title} className="max-h-[68vh] w-full object-cover" />
+                <div className="flex items-center justify-center w-full bg-black/20 p-2 h-[55vh] sm:h-[65vh] md:h-[72vh]">
+                  <img
+                    src={getOptimizedUrl(active.image, 1200)}
+                    alt={active.title}
+                    className="max-h-[72vh] max-w-full w-auto h-auto object-contain mx-auto block"
+                  />
+                </div>
               )}
               <div className="p-6">
                 <p className="text-aqua">{active.category}</p>

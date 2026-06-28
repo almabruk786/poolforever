@@ -1,14 +1,20 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { ObjectId, type Document } from "mongodb";
-import { getCollection } from "./db";
 import { contact, heroSlides, projects as defaultProjects } from "./data";
 import type { CmsAsset, CmsProject, ProjectInput, SiteContent } from "@/types/cms";
+
+type AdminUser = {
+  username: string;
+  passwordHash: string;
+  updatedAt: string;
+};
 
 type CmsStore = {
   content?: Partial<SiteContent>;
   projects?: CmsProject[];
   uploads?: CmsAsset[];
+  adminUser?: AdminUser;
+  bookings?: any[];
 };
 
 const storePath = path.join(process.cwd(), "data", "cms.json");
@@ -47,14 +53,6 @@ function slugify(value: string) {
 
 function makeId(label: string) {
   return `${slugify(label)}-${Date.now().toString(36)}`;
-}
-
-function idFilter(id: string) {
-  if (ObjectId.isValid(id)) {
-    return { $or: [{ id }, { _id: new ObjectId(id) }] };
-  }
-
-  return { id };
 }
 
 async function readStore(): Promise<CmsStore> {
@@ -103,7 +101,8 @@ function normalizeAsset(asset: Partial<CmsAsset> & { _id?: unknown }): CmsAsset 
     type: stringValue(asset.type, "application/octet-stream"),
     size: typeof asset.size === "number" ? asset.size : 0,
     src: stringValue(asset.src),
-    createdAt: stringValue(asset.createdAt) || new Date().toISOString()
+    createdAt: stringValue(asset.createdAt) || new Date().toISOString(),
+    publicId: stringValue(asset.publicId) || undefined
   };
 }
 
@@ -115,33 +114,12 @@ function cleanContent(input: Partial<SiteContent>) {
 }
 
 export async function getSiteContent() {
-  try {
-    const collection = await getCollection<Document>("content");
-    if (collection) {
-      const stored = await collection.findOne({ key: "site" });
-      return cleanContent((stored || {}) as Partial<SiteContent>);
-    }
-
-    const store = await readStore();
-    return cleanContent(store.content || {});
-  } catch {
-    return cleanContent({});
-  }
+  const store = await readStore();
+  return cleanContent(store.content || {});
 }
 
 export async function saveSiteContent(input: Partial<SiteContent>) {
   const content = cleanContent(input);
-  const collection = await getCollection<Document>("content");
-
-  if (collection) {
-    await collection.updateOne(
-      { key: "site" },
-      { $set: { ...content, key: "site", updatedAt: new Date().toISOString() } },
-      { upsert: true }
-    );
-    return content;
-  }
-
   const store = await readStore();
   store.content = content;
   await writeStore(store);
@@ -149,19 +127,9 @@ export async function saveSiteContent(input: Partial<SiteContent>) {
 }
 
 export async function getProjects() {
-  try {
-    const collection = await getCollection<Document>("projects");
-    if (collection) {
-      const stored = await collection.find({}).sort({ createdAt: -1 }).toArray();
-      return (stored.length ? stored : defaultProjects).map(normalizeProject);
-    }
-
-    const store = await readStore();
-    if (store.projects) return store.projects.map(normalizeProject);
-    return defaultProjects.map(normalizeProject);
-  } catch {
-    return defaultProjects.map(normalizeProject);
-  }
+  const store = await readStore();
+  if (store.projects) return store.projects.map(normalizeProject);
+  return defaultProjects.map(normalizeProject);
 }
 
 export async function saveProject(input: ProjectInput) {
@@ -172,12 +140,6 @@ export async function saveProject(input: ProjectInput) {
     createdAt: now,
     updatedAt: now
   });
-
-  const collection = await getCollection<Document>("projects");
-  if (collection) {
-    await collection.updateOne(idFilter(project.id), { $set: project }, { upsert: true });
-    return project;
-  }
 
   const store = await readStore();
   const projects = store.projects || defaultProjects.map(normalizeProject);
@@ -195,12 +157,6 @@ export async function saveProject(input: ProjectInput) {
 }
 
 export async function deleteProject(id: string) {
-  const collection = await getCollection<Document>("projects");
-  if (collection) {
-    const result = await collection.deleteOne(idFilter(id));
-    return result.deletedCount > 0;
-  }
-
   const store = await readStore();
   const projects = store.projects || defaultProjects.map(normalizeProject);
   const nextProjects = projects.filter((project) => project.id !== id);
@@ -210,12 +166,6 @@ export async function deleteProject(id: string) {
 }
 
 export async function getUploads() {
-  const collection = await getCollection<Document>("uploads");
-  if (collection) {
-    const uploads = await collection.find({}).sort({ createdAt: -1 }).toArray();
-    return uploads.map(normalizeAsset);
-  }
-
   const store = await readStore();
   return (store.uploads || []).map(normalizeAsset);
 }
@@ -227,12 +177,6 @@ export async function saveAsset(input: Omit<CmsAsset, "id" | "createdAt">) {
     createdAt: new Date().toISOString()
   });
 
-  const collection = await getCollection<Document>("uploads");
-  if (collection) {
-    await collection.insertOne(asset);
-    return asset;
-  }
-
   const store = await readStore();
   store.uploads = [asset, ...(store.uploads || [])];
   await writeStore(store);
@@ -240,16 +184,28 @@ export async function saveAsset(input: Omit<CmsAsset, "id" | "createdAt">) {
 }
 
 export async function deleteAsset(id: string) {
-  const collection = await getCollection<Document>("uploads");
-  if (collection) {
-    const result = await collection.deleteOne(idFilter(id));
-    return result.deletedCount > 0;
-  }
-
   const store = await readStore();
   const uploads = store.uploads || [];
   const nextUploads = uploads.filter((asset) => asset.id !== id);
   store.uploads = nextUploads;
   await writeStore(store);
   return nextUploads.length !== uploads.length;
+}
+
+export async function getAdminUser() {
+  const store = await readStore();
+  return store.adminUser || null;
+}
+
+export async function saveAdminUser(user: AdminUser) {
+  const store = await readStore();
+  store.adminUser = user;
+  await writeStore(store);
+}
+
+export async function saveBooking(booking: any) {
+  const store = await readStore();
+  store.bookings = [booking, ...(store.bookings || [])];
+  await writeStore(store);
+  return booking;
 }

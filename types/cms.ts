@@ -49,6 +49,7 @@ export type CmsAsset = {
   size: number;
   src: string;
   createdAt: string;
+  publicId?: string;
 };
 
 export type BookingInput = {
