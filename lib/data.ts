@@ -1,10 +1,10 @@
 import { CalendarDays, Droplets, Gem, Hammer, Hotel, ShieldCheck, Sparkles, Waves } from "lucide-react";
 
 export const contact = {
-  phone: process.env.NEXT_PUBLIC_PHONE_NUMBER || "+880 1XXX XXXXXX",
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "8801XXXXXXXXX",
-  facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || "https://facebook.com/poolforever",
-  email: "hello@poolforever.com",
+  phone: process.env.NEXT_PUBLIC_PHONE_NUMBER || "01812-150202",
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "8801812150202",
+  facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || "https://www.facebook.com/profile.php?id=100091894335831",
+  email: "poolforever10@gmail.com",
   address: "Address placeholder, Dhaka, Bangladesh",
   mapEmbed: "https://www.google.com/maps?q=Dhaka%20Bangladesh&output=embed"
 };
